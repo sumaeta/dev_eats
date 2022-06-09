@@ -1,6 +1,5 @@
 package com.dev.eats.domain.modal;
 
-import java.math.BigDecimal;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -12,7 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Restaurante {
+public class Cidade {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,13 +20,10 @@ public class Restaurante {
 	@Column(nullable = false)
 	private String nome;
 	
-	@Column(name = "taxa_frete", nullable = false)
-	private BigDecimal taxaFrete;
-
 	@ManyToOne
-	@JoinColumn(name = "cozinha_id")
-	private Cozinha cozinha;
-	
+	@JoinColumn(nullable = false)
+	private Estado estado;
+
 	public Long getId() {
 		return id;
 	}
@@ -43,13 +39,13 @@ public class Restaurante {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
-	public BigDecimal getTaxaFrete() {
-		return taxaFrete;
+	
+	public Estado getEstado() {
+		return estado;
 	}
 
-	public void setTaxaFrete(BigDecimal taxaFrete) {
-		this.taxaFrete = taxaFrete;
+	public void setEstado(Estado estado) {
+		this.estado = estado;
 	}
 
 	@Override
@@ -65,23 +61,8 @@ public class Restaurante {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Restaurante other = (Restaurante) obj;
+		Cidade other = (Cidade) obj;
 		return Objects.equals(id, other.id);
 	}
-
-	/**
-	 * @return the cozinha
-	 */
-	public Cozinha getCozinha() {
-		return cozinha;
-	}
-
-	/**
-	 * @param cozinha the cozinha to set
-	 */
-	public void setCozinha(Cozinha cozinha) {
-		this.cozinha = cozinha;
-	}
-	
 	
 }

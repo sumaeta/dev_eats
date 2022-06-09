@@ -9,14 +9,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Cozinha {
+public class FormaPagamento {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(length = 30, nullable = false)
-	private String nome;
+	@Column(nullable = false)
+	private String descricao;
 
 	public Long getId() {
 		return id;
@@ -26,12 +26,12 @@ public class Cozinha {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
 	@Override
@@ -47,9 +47,8 @@ public class Cozinha {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Cozinha other = (Cozinha) obj;
+		FormaPagamento other = (FormaPagamento) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
+
 }

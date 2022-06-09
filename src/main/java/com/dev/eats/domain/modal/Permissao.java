@@ -1,6 +1,5 @@
 package com.dev.eats.domain.modal;
 
-import java.math.BigDecimal;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -8,11 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 @Entity
-public class Restaurante {
+public class Permissao {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,13 +18,9 @@ public class Restaurante {
 	@Column(nullable = false)
 	private String nome;
 	
-	@Column(name = "taxa_frete", nullable = false)
-	private BigDecimal taxaFrete;
+	@Column(nullable = false)
+	private String descricao;
 
-	@ManyToOne
-	@JoinColumn(name = "cozinha_id")
-	private Cozinha cozinha;
-	
 	public Long getId() {
 		return id;
 	}
@@ -44,12 +37,12 @@ public class Restaurante {
 		this.nome = nome;
 	}
 
-	public BigDecimal getTaxaFrete() {
-		return taxaFrete;
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setTaxaFrete(BigDecimal taxaFrete) {
-		this.taxaFrete = taxaFrete;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
 	@Override
@@ -65,23 +58,8 @@ public class Restaurante {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Restaurante other = (Restaurante) obj;
+		Permissao other = (Permissao) obj;
 		return Objects.equals(id, other.id);
 	}
 
-	/**
-	 * @return the cozinha
-	 */
-	public Cozinha getCozinha() {
-		return cozinha;
-	}
-
-	/**
-	 * @param cozinha the cozinha to set
-	 */
-	public void setCozinha(Cozinha cozinha) {
-		this.cozinha = cozinha;
-	}
-	
-	
 }
