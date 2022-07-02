@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,11 +33,23 @@ public class CozinhaController {
 	@GetMapping("/{id}")
 	public ResponseEntity<Cozinha> buscar(@PathVariable Long id){
 		Cozinha cozinha = service.buscar(id);
-		return ResponseEntity.ok().body(cozinha);
+		return ResponseEntity.ok(cozinha);
 	}
 	
 	@PostMapping
-	public void salvar(@RequestBody @Valid Cozinha cozinha) {
-		service.salvar(cozinha);
+	public Cozinha salvar(@RequestBody @Valid Cozinha cozinha) {
+		return service.salvar(cozinha);
+	}
+	
+	@PutMapping("/{id}")
+	public ResponseEntity<Cozinha> atualizar(@PathVariable Long id, @RequestBody Cozinha cozinha){
+		Cozinha obj = service.buscar(id);
+		
+		if(obj != null) {
+			obj.setNome(cozinha.getNome());
+			return ResponseEntity.ok(obj);
+		}
+		
+		return ResponseEntity.notFound().build();
 	}
 }

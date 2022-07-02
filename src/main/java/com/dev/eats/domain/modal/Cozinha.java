@@ -15,7 +15,9 @@ public class Cozinha {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	//@JsonIgnore não mostra na representação json
 	@Column(length = 30, nullable = false)
+	//@JsonProperty("titulo") //muda o nome na representação json
 	private String nome;
 
 	public Long getId() {

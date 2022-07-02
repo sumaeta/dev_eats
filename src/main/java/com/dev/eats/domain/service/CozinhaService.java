@@ -32,8 +32,8 @@ public class CozinhaService {
 		return cozinha.get();
 	}
 	
-	public void salvar(Cozinha cozinha) {
+	public Cozinha salvar(Cozinha cozinha) {
 		cozinha.setId(null);
-		repository.save(cozinha);
+		return repository.save(cozinha);
 	}
 }
